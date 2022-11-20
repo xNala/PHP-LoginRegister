@@ -15,3 +15,15 @@ All settings can be found inside **'cfg/db.php'** while the email content can be
 
 - [xNala](https://github.com/xNala/)
 
+
+## To Do
+
+- ~~Registration~~
+- ~~Login~~
+- ~~Email Confirmation~~
+- Google 2FA/Authy 2FA
+- Password Reset
+- Change Password &nbsp; &nbsp;  (Logged In)
+- Change Email &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   (Logged In)
+- User Rank/Admin Panel
+
