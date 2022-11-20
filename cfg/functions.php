@@ -30,6 +30,8 @@
                 return "Username must be at least 4 characters!";
             elseif(strlen(trim($username)) > 32)
                 return "Username cannot be longer than 32 characters!";
+            elseif(!ctype_alnum(trim($username)))
+                return "Username can only contain letters and numbers!";
 
             $stmt = $this->dbHandler->prepX('SELECT * FROM `users` WHERE `username` = :username', [':username' => $username]);
             if($stmt->rowCount() > 0)
