@@ -29,14 +29,16 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `username` varchar(32) NOT NULL,
   `email` varchar(320) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '0',
+  `new_email` varchar(320) DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT 0,
   `password` varchar(60) NOT NULL,
-  `level` int(1) NOT NULL DEFAULT '0',
+  `level` int(1) NOT NULL DEFAULT 0,
   `resetKey` varchar(32) DEFAULT NULL,
   `otp_secret` varchar(40) DEFAULT NULL,
+  `otp_active` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
