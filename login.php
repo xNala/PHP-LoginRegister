@@ -90,6 +90,8 @@
 
                         <div class="control-group">
                             <a class="login-link" href="register.php">Not Yet Registered?</a>
+                            <br>
+                            <a class="login-link" href="forgot.php">Forgot your password?</a>
                         </div>                        
                     </form>
                 </div>

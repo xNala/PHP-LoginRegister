@@ -5,7 +5,7 @@
     define("DB_USER", "");
     define("DB_PASSWORD", "");
 
-    define('SITEEMAIL','example@riseup.net');
+    define('SITEEMAIL','youremail@riseup.net');
     define('WEBURL', 'http://bipf.hijackedyour.su/LoginRegister/');
 
     define('SMTP_USER', '');

@@ -43,8 +43,21 @@
 
     }elseif($requestType == 2){
         //Password Reset
+        header('location: reset.php?resetKey='.$resetCode.'&id='.$accountID);
+        exit();
 
+
+    }elseif($requestType == 3){
+        //Email Change
+
+        $dbHandler->prepX('UPDATE `users` SET `email` = `new_email`, `resetKey` = NULL, `new_email` = NULL WHERE `id` = :id', [':id' => $accountID]);
+
+        header('location: index.php?msg=email');
+        exit();
     }else{
         die('Invalid Request Type.');
     }
+
+
+
 ?>

@@ -2,26 +2,24 @@
 
     require_once('cfg/functions.php');
 
-    if($userHandler->isLoggedIn() && $userHandler->is2FAPassed()){
+    if($userHandler->isLoggedIn()){
         header('location: index.php');
         exit();
     }
 
     $err = "";
+    $msg = "";
 
-    if(isset($_POST['login'])){
-        if(!isset($_POST['2faCode']) || empty(trim($_POST['2faCode'])))
-            $err = "Please enter a 2FA Code.";
+    if(isset($_POST['reset'])){
+        if(!isset($_POST['email']) || empty(trim($_POST['email']))){
+            $err = "Please enter your email.";
+        }
 
-        if(!is_numeric($_POST['2faCode']))
-            $err = "Invalid 2FA Code.";
-
-        if($mfaFunctions->compareCode($userHandler->get2FASecret($_SESSION['userID']), $_POST['2faCode'], 2)){
-            $_SESSION['2faPassed'] = true;
-            header('location: index.php');
-            exit();
-        }else
-            $err = "Invalid 2FA Code.";
+        if($userHandler->passwordReset($_POST['email'])){
+            $msg = "Password reset requested. Please check your email.";
+        }else{
+            $err = "No account found with this email.";
+        }
     }
 
 ?>
@@ -40,24 +38,27 @@
         <div class="container">
             <div class="login-card">
                 <div class="login-header">
-                    <h1>2FA Security</h1>
+                    <h1>Login</h1>
                 </div>
 
                 <div class="login-body">
                     <?php
                         if($err !== "")
                             echo "<p class=\"login-error\">Error: ".$err."</p>";
+
+                        if($msg !== "")
+                            echo "<p class=\"login-message\">Notice: ".$msg."</p>";
                     ?>
 
 
                     <form method="POST">
                         <div class="control-group">
-                            <label class="form-label" for="2faCode">2FA Code</label>
-                            <input class="form-input" name="2faCode" id="2faCode" type="text" placeholder="000000">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-input" name="email" id="username" type="email" placeholder="Account Email">
                         </div>
-
+                        
                         <div class="control-group">
-                            <button type="submit" name="login" class="btn btn-primary btn-login">Login!</button>
+                            <button type="submit" name="reset" class="btn btn-primary btn-login">Request Reset!</button>
                         </div>                      
                     </form>
                 </div>
